@@ -2,11 +2,12 @@
   <nb-container>
     
     <nb-header />
-    <nb-content>
+    <nb-content class="reverseContent">
     <flat-list
         :data="listViewData"
         :render-item="(item) => renderList(item)"
         ref="listabc"
+        inverted
     />
     </nb-content>
     <nb-footer>
@@ -100,12 +101,12 @@ export default {
 
   },
   methods: {
-    renderList: function(item) {
-        return (<Text>{item.item}</Text>)
-    },
+            renderList: function(item) {
+                return (<Text>{item.item}</Text>)
+            },
     sendMessage: function(){
       this.listViewData.push(this.newMessage);
-      this.$refs.listabc.scrollToIndex({animated: true, index: 10})
+      this.$refs.listabc.scrollToIndex()
     },
     deleteRow: function(secId, rowId, rowMap) {
       rowMap[`${secId}${rowId}`].props.closeRow();
@@ -140,3 +141,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+.reverseContent {
+  transform: scaleY(-1);
+}
+.chatList{
+  transform: scaleY(1);
+}
+</style>
