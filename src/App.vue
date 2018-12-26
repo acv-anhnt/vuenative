@@ -1,22 +1,17 @@
 <template>
-  <nb-container>
-    
-    <nb-header />
-    <nb-content class="reverseContent">
-    <flat-list
+  <View class="containerStyle">
+      <flat-list
         :data="listViewData"
         :render-item="(item) => renderList(item)"
         ref="listabc"
         inverted
     />
-    </nb-content>
-    <nb-footer>
-      <nb-input v-model="newMessage" placeholder="Underline Textbox" />
-      <nb-button :onPress="sendMessage">
-        <nb-text>Click Me!</nb-text>
-      </nb-button>
-    </nb-footer>
-  </nb-container>
+    <View class="footer">
+      <TextInput v-model="newMessage" />
+      <Button title="Send" :onPress="sendMessage" />
+    </View>
+  </View>
+
 </template>
 <script>
 import React from "react";
@@ -67,32 +62,7 @@ export default {
         "Mama Sakho",
         "Alberto Moreno",
         "Emre Can",
-        "Joe Allen",
-        "Phil Coutinho",
-        "Phil Coutinho",
-        "Phil Coutinho",
-        "Phil Coutinho",
-        "Phil Coutinho",
-        "Simon Mignolet",
-        "Nathaniel Clyne",
-        "Dejan Lovren",
-        "Mama Sakho",
-        "Alberto Moreno",
-        "Simon Mignolet",
-        "Nathaniel Clyne",
-        "Dejan Lovren",
-        "Mama Sakho",
-        "Alberto Moreno",
-        "Simon Mignolet",
-        "Nathaniel Clyne",
-        "Dejan Lovren",
-        "Mama Sakho",
-        "Alberto Moreno",
-        "Simon Mignolet",
-        "Nathaniel Clyne",
-        "Dejan Lovren",
-        "Mama Sakho",
-        "Alberto Moreno sdsdfsEEEEEEEEEE"
+        "Joe Allen"
       ]
     };
   },
@@ -105,8 +75,7 @@ export default {
                 return (<Text>{item.item}</Text>)
             },
     sendMessage: function(){
-      this.listViewData.push(this.newMessage);
-      this.$refs.listabc.scrollToIndex()
+      this.listViewData.unshift(this.newMessage);
     },
     deleteRow: function(secId, rowId, rowMap) {
       rowMap[`${secId}${rowId}`].props.closeRow();
@@ -147,5 +116,12 @@ export default {
 }
 .chatList{
   transform: scaleY(1);
+}
+.containerStyle{
+  flex: 1;
+  margin-top: 20px;
+}
+.footer{
+  background-color: grey;
 }
 </style>
